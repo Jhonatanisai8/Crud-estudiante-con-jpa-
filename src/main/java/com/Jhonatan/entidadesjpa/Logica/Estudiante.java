@@ -13,7 +13,7 @@ public class Estudiante {
 
     @Id
     @Column(name = "id_estudiante")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int idEstudiante;
     @Column(name = "nombre")
     private String nombre;
