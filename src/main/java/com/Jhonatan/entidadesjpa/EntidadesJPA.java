@@ -11,7 +11,7 @@ public class EntidadesJPA {
 
     public static void modificarEstudiante() {
         EstudianteDao estudianteDao = new EstudianteDao();
-        Estudiante e2 = new Estudiante(4, "Juana");
+        Estudiante e2 = new Estudiante(1, "Aron");
         estudianteDao.modificarEstudiante(e2);
     }
 

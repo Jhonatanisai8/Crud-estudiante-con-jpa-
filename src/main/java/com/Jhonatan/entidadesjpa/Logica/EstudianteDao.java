@@ -33,10 +33,12 @@ public class EstudianteDao {
             Estudiante e = em.find(Estudiante.class, estudiante.getIdEstudiante());
             em.getTransaction().begin();
 
+            if (e == null) {
+                System.out.println("no se encontro dicho estudiante.");
+                return;
+            }
             //si contiene el objeto 
-            if (!em.contains(e)) {
-                System.out.println("no se encontro dicho estudiante ");
-            } else {
+            if (em.contains(e)) {
                 //actualizamos
                 em.merge(estudiante);
                 System.out.println("estudiante modificado");
