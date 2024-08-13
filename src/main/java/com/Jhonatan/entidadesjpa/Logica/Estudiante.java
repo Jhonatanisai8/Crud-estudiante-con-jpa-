@@ -12,13 +12,20 @@ import javax.persistence.Table;
 public class Estudiante {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE) // Cambia a IDENTITY si no usas secuencias
     @Column(name = "id_estudiante")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int idEstudiante;
+
     @Column(name = "nombre")
     private String nombre;
 
+    // Constructor por defecto
     public Estudiante() {
+    }
+
+    // Constructor con parámetros
+    public Estudiante(int idEstudiante) {
+        this.idEstudiante = idEstudiante;
     }
 
     public Estudiante(int idEstudiante, String nombre) {
@@ -26,6 +33,7 @@ public class Estudiante {
         this.nombre = nombre;
     }
 
+    // Getters y Setters
     public int getIdEstudiante() {
         return idEstudiante;
     }
@@ -41,5 +49,4 @@ public class Estudiante {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
 }

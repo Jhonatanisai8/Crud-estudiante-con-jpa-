@@ -6,7 +6,7 @@ import com.Jhonatan.entidadesjpa.Logica.EstudianteDao;
 public class EntidadesJPA {
 
     public static void main(String[] args) {
-        modificarEstudiante();
+        eliminarEstudiante();
     }
 
     public static void modificarEstudiante() {
@@ -21,6 +21,13 @@ public class EntidadesJPA {
         e1.setNombre("Juan");
 
         estudianteDao.insertarEstudiante(e1);
+    }
 
+    public static void eliminarEstudiante() {
+        EstudianteDao estudianteDao = new EstudianteDao();
+        Estudiante e3 = new Estudiante();
+        e3.setIdEstudiante(2);
+        estudianteDao.eliminarEstudiante(e3);
+        
     }
 }

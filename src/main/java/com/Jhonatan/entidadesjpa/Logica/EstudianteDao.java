@@ -2,6 +2,8 @@ package com.Jhonatan.entidadesjpa.Logica;
 
 import com.Jhonatan.entidadesjpa.persistencia.Conexion;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.LockModeType;
 
 public class EstudianteDao {
 
@@ -48,6 +50,39 @@ public class EstudianteDao {
             System.out.println("error al modificar " + e.getMessage());
         } finally {
             //cerramos la conexion
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
+
+    public void eliminarEstudiante(Estudiante estudiante) {
+        EntityManager em = null;
+        EntityTransaction tx = null;
+        try {
+            em = Conexion.createEntityManager();
+            tx = em.getTransaction();
+            tx.begin();
+
+            // Buscar la entidad en la base de datos
+            Estudiante e = em.find(Estudiante.class, estudiante.getIdEstudiante());
+            if (e != null) {
+                em.remove(e);
+                System.out.println("Estudiante eliminado");
+            } else {
+                System.out.println("Estudiante no encontrado");
+            }
+
+            // Confirmar la transacción
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                // Revertir la transacción en caso de error
+                tx.rollback();
+            }
+            System.out.println("Error al eliminar estudiante => " + e.getMessage());
+        } finally {
+            // Asegurarnos de cerrar el EntityManager
             if (em != null) {
                 em.close();
             }
