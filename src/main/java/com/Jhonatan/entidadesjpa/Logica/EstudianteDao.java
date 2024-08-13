@@ -1,9 +1,11 @@
 package com.Jhonatan.entidadesjpa.Logica;
 
 import com.Jhonatan.entidadesjpa.persistencia.Conexion;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.LockModeType;
+import javax.persistence.Query;
 
 public class EstudianteDao {
 
@@ -89,4 +91,26 @@ public class EstudianteDao {
         }
     }
 
+    public void listarEstudiantes() {
+        EntityManager em = null;
+        try {
+            em = Conexion.createEntityManager();
+
+            //le ponemos la consultamos la consulta
+            Query miQuery = em.createQuery("SELECT e FROM Estudiante e");
+            List<Estudiante> miListaEstudiantes = miQuery.getResultList();
+
+            for (Estudiante estudiante : miListaEstudiantes) {
+                System.out.println("Id: " + estudiante.getIdEstudiante() + " " + estudiante.mostrarDatos());
+            }
+        } catch (Exception e) {
+            System.out.println("erroral listar estudiantes: " + e.getMessage());
+        } finally {
+
+            //cerramos la conexion
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
 }

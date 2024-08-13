@@ -6,7 +6,7 @@ import com.Jhonatan.entidadesjpa.Logica.EstudianteDao;
 public class EntidadesJPA {
 
     public static void main(String[] args) {
-        eliminarEstudiante();
+        listaEstudiantes();
     }
 
     public static void modificarEstudiante() {
@@ -28,6 +28,10 @@ public class EntidadesJPA {
         Estudiante e3 = new Estudiante();
         e3.setIdEstudiante(2);
         estudianteDao.eliminarEstudiante(e3);
-        
+    }
+
+    public static void listaEstudiantes() {
+        EstudianteDao de = new EstudianteDao();
+        de.listarEstudiantes();
     }
 }
