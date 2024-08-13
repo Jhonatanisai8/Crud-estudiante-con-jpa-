@@ -49,4 +49,8 @@ public class Estudiante {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public String mostrarDatos() {
+        return nombre;
+    }
 }
